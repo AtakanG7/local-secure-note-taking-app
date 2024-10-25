@@ -1,21 +1,26 @@
-Simple Notes Setup and Usage
+# Simple Notes
 
-Initial Setup
+**Simple Notes** is a lightweight, local note-taking application designed for ease of use and secure storage.
 
-bash
-CopyInsert in Terminal
-./setup.sh
-Run the Application
+## Setup and Usage
 
-bash
-CopyInsert in Terminal
-python3 run.py
-Access in Browser Open a web browser and navigate to http://localhost:9999
+### Initial Setup
 
-Data Storage
+Run the setup script to install dependencies and configure the application by entering `./setup.sh` in your terminal.
 
-Notes data: /var/lib/simple-notes
-Encryption key: /etc/simple-notes
-System Requirements
+### Running the Application
 
-Python 3.7 or later
+Start the application by entering `python3 run.py` in your terminal.
+
+### Access in Browser
+
+Once the application is running, open your web browser and go to `http://localhost:9999`.
+
+## Data Storage
+
+- **Notes data**: Stored at `/var/lib/simple-notes`
+- **Encryption key**: Stored at `/etc/simple-notes`
+
+## System Requirements
+
+- **Python**: Version 3.7 or later

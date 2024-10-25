@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="day-counters">
+        <div class="counter-list">
+            {% for counter in counters %}
+                <div class="counter-box">
+                    <span class="counter-number">{{ counter.number }}</span>
+                    <a href="{{ url_for('delete_counter', id=counter.id) }}" class="counter-delete">×</a>
+                </div>
+            {% endfor %}
+            <a href="{{ url_for('add_counter') }}" class="add-counter">+</a>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1>Current Focus</h1>
+        <a href="{{ url_for('new_note') }}" class="button">+</a>
+    </div>
+    
+    {% if notes %}
+        {% set current = notes[0] %}
+        <div class="note-card current-focus">
+            <div class="task-main">
+                <div class="task-title">{{ current.decrypted_title }}</div>
+                <p>{{ current.decrypted_content }}</p>
+            </div>
+            <div class="actions">
+                <a href="{{ url_for('edit_note', id=current.id) }}" class="button">Edit</a>
+                <a href="{{ url_for('delete_note', id=current.id) }}" 
+                   class="button delete" 
+                >×</a>
+            </div>
+        </div>
+
+        <div class="next-section">
+            <h2>Next Up</h2>
+            {% for note in notes[1:] %}
+                <div class="note-card next-task">
+                    <div class="task-content">
+                        <h3>{{ note.decrypted_title }}</h3>
+                        <p>{{ note.decrypted_content }}</p>
+                    </div>
+                    <div class="actions">
+                        <a href="{{ url_for('make_current', id=note.id) }}" class="button focus">Focus</a>
+                        <a href="{{ url_for('edit_note', id=note.id) }}" class="button">Edit</a>
+                        <a href="{{ url_for('delete_note', id=note.id) }}" 
+                           class="button delete" 
+                           onclick="return confirm('Delete?')">×</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>Add your first task to get started</p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="header">
+        <h1>{{ 'Edit' if note else 'New Task' }}</h1>
+        <a href="{{ url_for('index') }}" class="button">×</a>
+    </div>
+    
+    <form class="note-form" method="POST">
+        <input type="text" 
+               name="title" 
+               placeholder="Title" 
+               value="{{ note.title if note else '' }}" 
+               required>
+        <textarea name="content" 
+                  placeholder="What needs to be done..."
+                  required>{{ note.content if note else '' }}</textarea>
+        <button type="submit" class="button">Save</button>
+    </form>
+{% endblock %}
